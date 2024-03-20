@@ -25,14 +25,22 @@ namespace API_Console_Jeux.Controllers
         [HttpGet]
         public async Task<ActionResult<IEnumerable<JeuxConsole>>> GetConsole()
         {
+<<<<<<< HEAD:API_Console_Jeux/API_Console_Jeux_renom/API_Console_Jeux/Controllers/JeuxConsolesController.cs
             return await _context.JeuxConsole.ToListAsync();
+=======
+            return await _context.Console.ToListAsync();
+>>>>>>> e1a24c9ccb6cd2ab1e0849a83cd9873c67640cc8:API_Console_Jeux/API_Console_Jeux/Controllers/JeuxConsolesController.cs
         }
 
         // GET: api/JeuxConsoles/5
         [HttpGet("{id}")]
         public async Task<ActionResult<JeuxConsole>> GetJeuxConsole(int id)
         {
+<<<<<<< HEAD:API_Console_Jeux/API_Console_Jeux_renom/API_Console_Jeux/Controllers/JeuxConsolesController.cs
             var jeuxConsole = await _context.JeuxConsole.FindAsync(id);
+=======
+            var jeuxConsole = await _context.Console.FindAsync(id);
+>>>>>>> e1a24c9ccb6cd2ab1e0849a83cd9873c67640cc8:API_Console_Jeux/API_Console_Jeux/Controllers/JeuxConsolesController.cs
 
             if (jeuxConsole == null)
             {
@@ -78,7 +86,11 @@ namespace API_Console_Jeux.Controllers
         [HttpPost]
         public async Task<ActionResult<JeuxConsole>> PostJeuxConsole(JeuxConsole jeuxConsole)
         {
+<<<<<<< HEAD:API_Console_Jeux/API_Console_Jeux_renom/API_Console_Jeux/Controllers/JeuxConsolesController.cs
             _context.JeuxConsole.Add(jeuxConsole);
+=======
+            _context.Console.Add(jeuxConsole);
+>>>>>>> e1a24c9ccb6cd2ab1e0849a83cd9873c67640cc8:API_Console_Jeux/API_Console_Jeux/Controllers/JeuxConsolesController.cs
             await _context.SaveChangesAsync();
 
             return CreatedAtAction("GetJeuxConsole", new { id = jeuxConsole.Id }, jeuxConsole);
@@ -88,13 +100,21 @@ namespace API_Console_Jeux.Controllers
         [HttpDelete("{id}")]
         public async Task<IActionResult> DeleteJeuxConsole(int id)
         {
+<<<<<<< HEAD:API_Console_Jeux/API_Console_Jeux_renom/API_Console_Jeux/Controllers/JeuxConsolesController.cs
             var jeuxConsole = await _context.JeuxConsole.FindAsync(id);
+=======
+            var jeuxConsole = await _context.Console.FindAsync(id);
+>>>>>>> e1a24c9ccb6cd2ab1e0849a83cd9873c67640cc8:API_Console_Jeux/API_Console_Jeux/Controllers/JeuxConsolesController.cs
             if (jeuxConsole == null)
             {
                 return NotFound();
             }
 
+<<<<<<< HEAD:API_Console_Jeux/API_Console_Jeux_renom/API_Console_Jeux/Controllers/JeuxConsolesController.cs
             _context.JeuxConsole.Remove(jeuxConsole);
+=======
+            _context.Console.Remove(jeuxConsole);
+>>>>>>> e1a24c9ccb6cd2ab1e0849a83cd9873c67640cc8:API_Console_Jeux/API_Console_Jeux/Controllers/JeuxConsolesController.cs
             await _context.SaveChangesAsync();
 
             return NoContent();
@@ -102,7 +122,11 @@ namespace API_Console_Jeux.Controllers
 
         private bool JeuxConsoleExists(int id)
         {
+<<<<<<< HEAD:API_Console_Jeux/API_Console_Jeux_renom/API_Console_Jeux/Controllers/JeuxConsolesController.cs
             return _context.JeuxConsole.Any(e => e.Id == id);
+=======
+            return _context.Console.Any(e => e.Id == id);
+>>>>>>> e1a24c9ccb6cd2ab1e0849a83cd9873c67640cc8:API_Console_Jeux/API_Console_Jeux/Controllers/JeuxConsolesController.cs
         }
     }
 }
