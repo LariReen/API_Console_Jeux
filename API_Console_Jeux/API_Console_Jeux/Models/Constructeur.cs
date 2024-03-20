@@ -2,7 +2,7 @@
 {
     public class Constructeur
     {
-        public int Id_constructeur { get; set; }
+        public int Id { get; set; }
         public string Nom_constructeur { get; set; }
 
         public List<Console> List_console { get; set; }

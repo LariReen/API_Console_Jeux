@@ -2,7 +2,7 @@
 {
     public class Console
     {
-        public int Id_console { get; set; }
+        public int Id { get; set; }
         public string Nom_console { get; set; }
         public string Type_console { get; set; }
         public List<Ventes> List_ventes { get; set; }
