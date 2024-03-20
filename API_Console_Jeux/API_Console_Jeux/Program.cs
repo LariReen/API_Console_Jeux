@@ -1,4 +1,9 @@
+﻿using Microsoft.EntityFrameworkCore;
+using Microsoft.Extensions.DependencyInjection;
+using API_Console_Jeux.Data;
 var builder = WebApplication.CreateBuilder(args);
+builder.Services.AddDbContext<API_Console_JeuxContext>(options =>
+    options.UseSqlServer(builder.Configuration.GetConnectionString("API_Console_JeuxContext") ?? throw new InvalidOperationException("Connection string 'API_Console_JeuxContext' not found.")));
 
 // Add services to the container.
 
