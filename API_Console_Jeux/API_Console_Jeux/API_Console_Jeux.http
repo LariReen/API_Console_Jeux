@@ -1,0 +1,6 @@
+@API_Console_Jeux_HostAddress = http://localhost:5171
+
+GET {{API_Console_Jeux_HostAddress}}/weatherforecast/
+Accept: application/json
+
+###
