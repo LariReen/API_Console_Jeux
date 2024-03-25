@@ -1,0 +1,24 @@
+{
+  "dependencies": {
+    "apis1": {
+      "restored": true,
+      "restoreTime": "2024-03-25T11:27:44.5917012Z"
+    },
+    "mssql1": {
+      "restored": true,
+      "restoreTime": "2024-03-25T11:34:58.6320508Z"
+    }
+  },
+  "parameters": {
+    "apis1.resourceGroupName": {
+      "Name": "apis1.resourceGroupName",
+      "Type": "resourceGroup",
+      "Value": "APIConsoleJeuxResourceGroup"
+    },
+    "apis1.subscriptionId": {
+      "Name": "apis1.subscriptionId",
+      "Type": "subscription",
+      "Value": "adfae7ac-8017-4dc7-b833-e5eefef81ba4"
+    }
+  }
+}

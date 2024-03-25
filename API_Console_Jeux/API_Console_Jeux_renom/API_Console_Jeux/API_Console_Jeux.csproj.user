@@ -11,5 +11,6 @@
     <WebStackScaffolding_LayoutPageFile />
     <WebStackScaffolding_DbContextTypeFullName>API_Console_Jeux.Data.API_Console_JeuxContext</WebStackScaffolding_DbContextTypeFullName>
     <WebStackScaffolding_IsAsyncSelected>False</WebStackScaffolding_IsAsyncSelected>
+    <NameOfLastUsedPublishProfile>APIConsoleJeux20240325123614 - Web Deploy</NameOfLastUsedPublishProfile>
   </PropertyGroup>
 </Project>

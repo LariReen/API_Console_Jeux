@@ -1,8 +1,12 @@
 {
   "dependencies": {
+    "apis1": {
+      "type": "apis"
+    },
     "mssql1": {
       "type": "mssql",
-      "connectionId": "ConnectionStrings:API_Console_JeuxContext"
+      "connectionId": "ConnectionStrings:API_Console_JeuxContext",
+      "dynamicId": null
     }
   }
 }
