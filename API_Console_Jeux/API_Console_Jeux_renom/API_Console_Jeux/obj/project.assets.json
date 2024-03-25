@@ -8556,11 +8556,11 @@
   "project": {
     "version": "1.0.0",
     "restore": {
-      "projectUniqueName": "C:\\Users\\Farel\\source\\repos\\API_Console_Jeux_renom\\API_Console_Jeux\\API_Console_Jeux.csproj",
+      "projectUniqueName": "C:\\Users\\Farel\\source\\repos\\API_Console_Jeux\\API_Console_Jeux\\API_Console_Jeux_renom\\API_Console_Jeux\\API_Console_Jeux.csproj",
       "projectName": "API_Console_Jeux",
-      "projectPath": "C:\\Users\\Farel\\source\\repos\\API_Console_Jeux_renom\\API_Console_Jeux\\API_Console_Jeux.csproj",
+      "projectPath": "C:\\Users\\Farel\\source\\repos\\API_Console_Jeux\\API_Console_Jeux\\API_Console_Jeux_renom\\API_Console_Jeux\\API_Console_Jeux.csproj",
       "packagesPath": "C:\\Users\\Farel\\.nuget\\packages\\",
-      "outputPath": "C:\\Users\\Farel\\source\\repos\\API_Console_Jeux_renom\\API_Console_Jeux\\obj\\",
+      "outputPath": "C:\\Users\\Farel\\source\\repos\\API_Console_Jeux\\API_Console_Jeux\\API_Console_Jeux_renom\\API_Console_Jeux\\obj\\",
       "projectStyle": "PackageReference",
       "configFilePaths": [
         "C:\\Users\\Farel\\AppData\\Roaming\\NuGet\\NuGet.Config",

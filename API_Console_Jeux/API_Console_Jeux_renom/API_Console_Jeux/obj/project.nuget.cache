@@ -1,8 +1,8 @@
 {
   "version": 2,
-  "dgSpecHash": "W6pyWM2Kpi8xZOZoly4mMoJirg337ykPQlC1RDKs+tJhAY9h4DPc4aSKEgUhHIROZO6Ypin8XKEdUXvLHLD27g==",
+  "dgSpecHash": "SMqz9La8dkGkT38PxrvqBqIgUhXgFFxNsAMamlDp63JITJk3dJ5X+r1rC4zELyRmUyNjRvXa2+J4pckRi6xexw==",
   "success": true,
-  "projectFilePath": "C:\\Users\\Farel\\source\\repos\\API_Console_Jeux_renom\\API_Console_Jeux\\API_Console_Jeux.csproj",
+  "projectFilePath": "C:\\Users\\Farel\\source\\repos\\API_Console_Jeux\\API_Console_Jeux\\API_Console_Jeux_renom\\API_Console_Jeux\\API_Console_Jeux.csproj",
   "expectedPackageFiles": [
     "C:\\Users\\Farel\\.nuget\\packages\\azure.core\\1.35.0\\azure.core.1.35.0.nupkg.sha512",
     "C:\\Users\\Farel\\.nuget\\packages\\azure.identity\\1.10.3\\azure.identity.1.10.3.nupkg.sha512",

@@ -9,7 +9,7 @@ namespace API_Console_Jeux.Data
 {
     public class API_Console_JeuxContext : DbContext
     {
-        public API_Console_JeuxContext (DbContextOptions<API_Console_JeuxContext> options)
+        public API_Console_JeuxContext(DbContextOptions<API_Console_JeuxContext> options)
             : base(options)
         {
         }
@@ -17,5 +17,6 @@ namespace API_Console_Jeux.Data
         public DbSet<API_Console_Jeux.Models.JeuxConsole> JeuxConsole { get; set; } = default!;
         public DbSet<API_Console_Jeux.Models.Ventes> Ventes { get; set; } = default!;
         public DbSet<API_Console_Jeux.Models.Constructeur> Constructeur { get; set; } = default!;
+
     }
 }

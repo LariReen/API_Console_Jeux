@@ -1,6 +1,6 @@
 {
   "Version": 1,
-  "Hash": "ZsHUW22Bu0gsEJ3U5QSRnJPImHQ8fF1pLE+jms7KGko=",
+  "Hash": "8VW3chP0hEI95qJNImPtG6kVPvVXmtB36Us7SNi7c5M=",
   "Source": "API_Console_Jeux",
   "BasePath": "_content/API_Console_Jeux",
   "Mode": "Default",
@@ -47,10 +47,10 @@
       "OriginalItemSpec": "C:\\Users\\Farel\\.nuget\\packages\\microsoft.aspnetcore.components.quickgrid\\8.0.3\\staticwebassets\\QuickGrid.razor.js"
     },
     {
-      "Identity": "C:\\Users\\Farel\\source\\repos\\API_Console_Jeux_renom\\API_Console_Jeux\\obj\\Debug\\net8.0\\scopedcss\\bundle\\API_Console_Jeux.styles.css",
+      "Identity": "C:\\Users\\Farel\\source\\repos\\API_Console_Jeux\\API_Console_Jeux\\API_Console_Jeux_renom\\API_Console_Jeux\\obj\\Debug\\net8.0\\scopedcss\\bundle\\API_Console_Jeux.styles.css",
       "SourceId": "API_Console_Jeux",
       "SourceType": "Computed",
-      "ContentRoot": "C:\\Users\\Farel\\source\\repos\\API_Console_Jeux_renom\\API_Console_Jeux\\obj\\Debug\\net8.0\\scopedcss\\bundle\\",
+      "ContentRoot": "C:\\Users\\Farel\\source\\repos\\API_Console_Jeux\\API_Console_Jeux\\API_Console_Jeux_renom\\API_Console_Jeux\\obj\\Debug\\net8.0\\scopedcss\\bundle\\",
       "BasePath": "_content/API_Console_Jeux",
       "RelativePath": "API_Console_Jeux.styles.css",
       "AssetKind": "All",
@@ -63,7 +63,7 @@
       "AssetTraitValue": "ApplicationBundle",
       "CopyToOutputDirectory": "Never",
       "CopyToPublishDirectory": "PreserveNewest",
-      "OriginalItemSpec": "C:\\Users\\Farel\\source\\repos\\API_Console_Jeux_renom\\API_Console_Jeux\\obj\\Debug\\net8.0\\scopedcss\\bundle\\API_Console_Jeux.styles.css"
+      "OriginalItemSpec": "C:\\Users\\Farel\\source\\repos\\API_Console_Jeux\\API_Console_Jeux\\API_Console_Jeux_renom\\API_Console_Jeux\\obj\\Debug\\net8.0\\scopedcss\\bundle\\API_Console_Jeux.styles.css"
     }
   ]
 }
