@@ -23,86 +23,98 @@ namespace API_Console_Jeux.Controllers
 
         // GET: api/Constructeurs
         [HttpGet]
-        public async Task<ActionResult<IEnumerable<Constructeur>>> GetConstructeur()
-        {
-            return await _context.Constructeur.ToListAsync();
-        }
+        public async Task
+
 
         // GET: api/Constructeurs/5
         [HttpGet("{id}")]
-        public async Task<ActionResult<Constructeur>> GetConstructeur(int id)
-        {
-            var constructeur = await _context.Constructeur.FindAsync(id);
-
+        public async Task
+ 
             if (constructeur == null)
             {
                 return NotFound();
-            }
-
+    }
+ 
             return constructeur;
         }
 
-        // PUT: api/Constructeurs/5
-        // To protect from overposting attacks, see https://go.microsoft.com/fwlink/?linkid=2123754
-        [HttpPut("{id}")]
-        public async Task<IActionResult> PutConstructeur(int id, Constructeur constructeur)
+
+// PUT: api/Constructeurs/5
+// To protect from overposting attacks, see https://go.microsoft.com/fwlink/?linkid=2123754
+[HttpPut("{id}")]
+public async Task PutConstructeur(int id, Constructeur constructeur)
+{
+    if (id != constructeur.Id)
+    {
+        return BadRequest();
+    }
+
+    _context.Entry(constructeur).State = EntityState.Modified;
+
+    try
+    {
+        await _context.SaveChangesAsync();
+    }
+    catch (DbUpdateConcurrencyException)
+    {
+        if (!ConstructeurExists(id))
         {
-            if (id != constructeur.Id)
-            {
-                return BadRequest();
-            }
-
-            _context.Entry(constructeur).State = EntityState.Modified;
-
-            try
-            {
-                await _context.SaveChangesAsync();
-            }
-            catch (DbUpdateConcurrencyException)
-            {
-                if (!ConstructeurExists(id))
-                {
-                    return NotFound();
-                }
-                else
-                {
-                    throw;
-                }
-            }
-
-            return NoContent();
+            return NotFound();
         }
-
-        // POST: api/Constructeurs
-        // To protect from overposting attacks, see https://go.microsoft.com/fwlink/?linkid=2123754
-        [HttpPost]
-        public async Task<ActionResult<Constructeur>> PostConstructeur(Constructeur constructeur)
+        else
         {
-            _context.Constructeur.Add(constructeur);
-            await _context.SaveChangesAsync();
+            throw;
+        }
+    }
 
+    return NoContent();
+}
+
+// POST: api/Constructeurs
+// To protect from overposting attacks, see https://go.microsoft.com/fwlink/?linkid=2123754
+[HttpPost]
+public async Task
+ 
             return CreatedAtAction("GetConstructeur", new { id = constructeur.Id }, constructeur);
         }
-
+ 
         // DELETE: api/Constructeurs/5
         [HttpDelete("{id}")]
-        public async Task<IActionResult> DeleteConstructeur(int id)
-        {
-            var constructeur = await _context.Constructeur.FindAsync(id);
-            if (constructeur == null)
-            {
-                return NotFound();
-            }
+public async Task DeleteConstructeur(int id)
+{
+    var constructeur = await _context.Constructeur
+                                      .Include(c => c.List_console)
+                                          .ThenInclude(jc => jc.List_ventes) // Chargez les ventes pour chaque jeu
+                                      .FirstOrDefaultAsync(c => c.Id == id);
 
-            _context.Constructeur.Remove(constructeur);
-            await _context.SaveChangesAsync();
+    if (constructeur == null)
+    {
+        return NotFound();
+    }
 
-            return NoContent();
-        }
+    // Parcourez chaque JeuxConsole lié pour supprimer ses Ventes associées
+    foreach (var jeuConsole in constructeur.List_console)
+    {
+        // Supprimez les Ventes liées à ce JeuxConsole
+        _context.Ventes.RemoveRange(jeuConsole.List_ventes);
+    }
 
-        private bool ConstructeurExists(int id)
-        {
-            return _context.Constructeur.Any(e => e.Id == id);
-        }
+    // Supprimez les JeuxConsole après avoir supprimé leurs Ventes
+    _context.JeuxConsole.RemoveRange(constructeur.List_console);
+
+    // Supprimez le Constructeur
+    _context.Constructeur.Remove(constructeur);
+
+    // Sauvegardez les changements dans la base de données
+    await _context.SaveChangesAsync();
+
+    return NoContent();
+}
+
+
+private bool ConstructeurExists(int id)
+{
+    return _context.Constructeur.Any(e => e.Id == id);
+}
     }
 }

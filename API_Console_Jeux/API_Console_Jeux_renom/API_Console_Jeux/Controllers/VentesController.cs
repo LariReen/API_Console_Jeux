@@ -23,86 +23,78 @@ namespace API_Console_Jeux.Controllers
 
         // GET: api/Ventes
         [HttpGet]
-        public async Task<ActionResult<IEnumerable<Ventes>>> GetVentes()
-        {
-            return await _context.Ventes.ToListAsync();
-        }
+        public async Task
 
         // GET: api/Ventes/5
         [HttpGet("{id}")]
-        public async Task<ActionResult<Ventes>> GetVentes(int id)
-        {
-            var ventes = await _context.Ventes.FindAsync(id);
-
+        public async Task
+ 
             if (ventes == null)
             {
                 return NotFound();
-            }
-
+    }
+ 
             return ventes;
         }
 
-        // PUT: api/Ventes/5
-        // To protect from overposting attacks, see https://go.microsoft.com/fwlink/?linkid=2123754
-        [HttpPut("{id}")]
-        public async Task<IActionResult> PutVentes(int id, Ventes ventes)
+// PUT: api/Ventes/5
+// To protect from overposting attacks, see https://go.microsoft.com/fwlink/?linkid=2123754
+[HttpPut("{id}")]
+public async Task PutVentes(int id, Ventes ventes)
+{
+    if (id != ventes.Id)
+    {
+        return BadRequest();
+    }
+
+    _context.Entry(ventes).State = EntityState.Modified;
+
+    try
+    {
+        await _context.SaveChangesAsync();
+    }
+    catch (DbUpdateConcurrencyException)
+    {
+        if (!VentesExists(id))
         {
-            if (id != ventes.Id)
-            {
-                return BadRequest();
-            }
-
-            _context.Entry(ventes).State = EntityState.Modified;
-
-            try
-            {
-                await _context.SaveChangesAsync();
-            }
-            catch (DbUpdateConcurrencyException)
-            {
-                if (!VentesExists(id))
-                {
-                    return NotFound();
-                }
-                else
-                {
-                    throw;
-                }
-            }
-
-            return NoContent();
+            return NotFound();
         }
-
-        // POST: api/Ventes
-        // To protect from overposting attacks, see https://go.microsoft.com/fwlink/?linkid=2123754
-        [HttpPost]
-        public async Task<ActionResult<Ventes>> PostVentes(Ventes ventes)
+        else
         {
-            _context.Ventes.Add(ventes);
-            await _context.SaveChangesAsync();
+            throw;
+        }
+    }
 
+    return NoContent();
+}
+
+// POST: api/Ventes
+// To protect from overposting attacks, see https://go.microsoft.com/fwlink/?linkid=2123754
+[HttpPost]
+public async Task
+ 
             return CreatedAtAction("GetVentes", new { id = ventes.Id }, ventes);
         }
-
+ 
         // DELETE: api/Ventes/5
         [HttpDelete("{id}")]
-        public async Task<IActionResult> DeleteVentes(int id)
-        {
-            var ventes = await _context.Ventes.FindAsync(id);
-            if (ventes == null)
-            {
-                return NotFound();
-            }
+public async Task DeleteVentes(int id)
+{
+    var ventes = await _context.Ventes.FindAsync(id);
+    if (ventes == null)
+    {
+        return NotFound();
+    }
 
-            _context.Ventes.Remove(ventes);
-            await _context.SaveChangesAsync();
+    _context.Ventes.Remove(ventes);
+    await _context.SaveChangesAsync();
 
-            return NoContent();
-        }
+    return NoContent();
+}
 
-        private bool VentesExists(int id)
-        {
-            return _context.Ventes.Any(e => e.Id == id);
-        }
+private bool VentesExists(int id)
+{
+    return _context.Ventes.Any(e => e.Id == id);
+}
     }
 }
