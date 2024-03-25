@@ -23,98 +23,114 @@ namespace API_Console_Jeux.Controllers
 
         // GET: api/Constructeurs
         [HttpGet]
-        public async Task
+        public async Task<ActionResult<IEnumerable<Constructeur>>> GetConstructeur()
+        {
+            return await _context.Constructeur
+                                 .Include(c => c.List_console) // Inclure la liste des jeux consoles
+                                     .ThenInclude(jc => jc.List_ventes) // Puis inclure la liste des ventes pour chaque jeu console
+                                 .ToListAsync();
+        }
+
 
 
         // GET: api/Constructeurs/5
         [HttpGet("{id}")]
-        public async Task
- 
+        public async Task<ActionResult<Constructeur>> GetConstructeur(int id)
+        {
+            var constructeur = await _context.Constructeur
+                                              .Include(c => c.List_console) // Inclure la liste des jeux consoles
+                                                  .ThenInclude(jc => jc.List_ventes) // Puis inclure la liste des ventes pour chaque jeu console
+                                              .FirstOrDefaultAsync(c => c.Id == id);
+
             if (constructeur == null)
             {
                 return NotFound();
-    }
- 
+            }
+
             return constructeur;
         }
 
 
-// PUT: api/Constructeurs/5
-// To protect from overposting attacks, see https://go.microsoft.com/fwlink/?linkid=2123754
-[HttpPut("{id}")]
-public async Task PutConstructeur(int id, Constructeur constructeur)
-{
-    if (id != constructeur.Id)
-    {
-        return BadRequest();
-    }
 
-    _context.Entry(constructeur).State = EntityState.Modified;
-
-    try
-    {
-        await _context.SaveChangesAsync();
-    }
-    catch (DbUpdateConcurrencyException)
-    {
-        if (!ConstructeurExists(id))
+        // PUT: api/Constructeurs/5
+        // To protect from overposting attacks, see https://go.microsoft.com/fwlink/?linkid=2123754
+        [HttpPut("{id}")]
+        public async Task<IActionResult> PutConstructeur(int id, Constructeur constructeur)
         {
-            return NotFound();
+            if (id != constructeur.Id)
+            {
+                return BadRequest();
+            }
+
+            _context.Entry(constructeur).State = EntityState.Modified;
+
+            try
+            {
+                await _context.SaveChangesAsync();
+            }
+            catch (DbUpdateConcurrencyException)
+            {
+                if (!ConstructeurExists(id))
+                {
+                    return NotFound();
+                }
+                else
+                {
+                    throw;
+                }
+            }
+
+            return NoContent();
         }
-        else
+
+        // POST: api/Constructeurs
+        // To protect from overposting attacks, see https://go.microsoft.com/fwlink/?linkid=2123754
+        [HttpPost]
+        public async Task<ActionResult<Constructeur>> PostConstructeur(Constructeur constructeur)
         {
-            throw;
-        }
-    }
+            _context.Constructeur.Add(constructeur);
+            await _context.SaveChangesAsync();
 
-    return NoContent();
-}
-
-// POST: api/Constructeurs
-// To protect from overposting attacks, see https://go.microsoft.com/fwlink/?linkid=2123754
-[HttpPost]
-public async Task
- 
             return CreatedAtAction("GetConstructeur", new { id = constructeur.Id }, constructeur);
         }
- 
+
         // DELETE: api/Constructeurs/5
         [HttpDelete("{id}")]
-public async Task DeleteConstructeur(int id)
-{
-    var constructeur = await _context.Constructeur
-                                      .Include(c => c.List_console)
-                                          .ThenInclude(jc => jc.List_ventes) // Chargez les ventes pour chaque jeu
-                                      .FirstOrDefaultAsync(c => c.Id == id);
+        public async Task<IActionResult> DeleteConstructeur(int id)
+        {
+            var constructeur = await _context.Constructeur
+                                              .Include(c => c.List_console)
+                                                  .ThenInclude(jc => jc.List_ventes) // Chargez les ventes pour chaque jeu
+                                              .FirstOrDefaultAsync(c => c.Id == id);
 
-    if (constructeur == null)
-    {
-        return NotFound();
-    }
+            if (constructeur == null)
+            {
+                return NotFound();
+            }
 
-    // Parcourez chaque JeuxConsole lié pour supprimer ses Ventes associées
-    foreach (var jeuConsole in constructeur.List_console)
-    {
-        // Supprimez les Ventes liées à ce JeuxConsole
-        _context.Ventes.RemoveRange(jeuConsole.List_ventes);
-    }
+            // Parcourez chaque JeuxConsole lié pour supprimer ses Ventes associées
+            foreach (var jeuConsole in constructeur.List_console)
+            {
+                // Supprimez les Ventes liées à ce JeuxConsole
+                _context.Ventes.RemoveRange(jeuConsole.List_ventes);
+            }
 
-    // Supprimez les JeuxConsole après avoir supprimé leurs Ventes
-    _context.JeuxConsole.RemoveRange(constructeur.List_console);
+            // Supprimez les JeuxConsole après avoir supprimé leurs Ventes
+            _context.JeuxConsole.RemoveRange(constructeur.List_console);
 
-    // Supprimez le Constructeur
-    _context.Constructeur.Remove(constructeur);
+            // Supprimez le Constructeur
+            _context.Constructeur.Remove(constructeur);
 
-    // Sauvegardez les changements dans la base de données
-    await _context.SaveChangesAsync();
+            // Sauvegardez les changements dans la base de données
+            await _context.SaveChangesAsync();
 
-    return NoContent();
-}
+            return NoContent();
+        }
 
 
-private bool ConstructeurExists(int id)
-{
-    return _context.Constructeur.Any(e => e.Id == id);
-}
+        private bool ConstructeurExists(int id)
+        {
+            return _context.Constructeur.Any(e => e.Id == id);
+        }
     }
 }
