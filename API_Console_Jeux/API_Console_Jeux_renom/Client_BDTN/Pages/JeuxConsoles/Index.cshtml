@@ -2,7 +2,7 @@
 @model Client_BDTN.Pages.JeuxConsoles.IndexModel
 
 @{
-    ViewData["Title"] = "Index";
+    ViewData["Title"] = "Index";
 }
 
 <h1>Index</h1>
@@ -14,30 +14,61 @@
     <thead>
         <tr>
             <th>
+                @Html.DisplayNameFor(model => model.JeuxConsole[0].Id)
+            </th>
+            <th>
                 @Html.DisplayNameFor(model => model.JeuxConsole[0].Nom_jeuxconsole)
             </th>
             <th>
                 @Html.DisplayNameFor(model => model.JeuxConsole[0].Type_jeuxconsole)
             </th>
-            <th></th>
+            <th>Ventes</th>
+            <th>Actions</th>
         </tr>
     </thead>
     <tbody>
-@foreach (var item in Model.JeuxConsole) {
+        @foreach (var item in Model.JeuxConsole)
+        {
+           
         <tr>
+            <td>
+                @Html.DisplayFor(modelItem => item.Id)
+            </td>
             <td>
                 @Html.DisplayFor(modelItem => item.Nom_jeuxconsole)
             </td>
             <td>
                 @Html.DisplayFor(modelItem => item.Type_jeuxconsole)
             </td>
-              
+            <td>
+                <table>
+                    <thead>
+                        <tr>
+                            <th>Id</th>
+                            <th>Nombre Ventes</th>
+                            <th>Année</th>
+                        </tr>
+                    </thead>
+                    <tbody>
+                        @foreach (var vente in item.List_ventes)
+                            {
+                               
+                        <tr>
+                            <td>@vente.Id</td>
+                            <td>@vente.Nombre_ventes</td>
+                            <td>@vente.Annee</td>
+                        </tr>
+                            }
+                    </tbody>
+                </table>
+            </td>
+
             <td>
                 <a asp-page="./Edit" asp-route-id="@item.Id">Edit</a> |
                 <a asp-page="./Details" asp-route-id="@item.Id">Details</a> |
                 <a asp-page="./Delete" asp-route-id="@item.Id">Delete</a>
             </td>
         </tr>
-}
+        }
     </tbody>
 </table>
