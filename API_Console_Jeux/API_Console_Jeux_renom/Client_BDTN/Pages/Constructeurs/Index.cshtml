@@ -2,7 +2,7 @@
 @model Client_BDTN.Pages.Constructeurs.IndexModel
 
 @{
-    ViewData["Title"] = "Index";
+    ViewData["Title"] = "Index";
 }
 
 <h1>Index</h1>
@@ -14,23 +14,61 @@
     <thead>
         <tr>
             <th>
+                @Html.DisplayNameFor(model => model.Constructeur[0].Id)
+            </th>
+            <th>
                 @Html.DisplayNameFor(model => model.Constructeur[0].Nom_constructeur)
             </th>
-            <th></th>
+            <th>Jeux Console et Ventes</th>
+            <th>Actions</th>
         </tr>
     </thead>
     <tbody>
-@foreach (var item in Model.Constructeur) {
+        @foreach (var constructeur in Model.Constructeur)
+        {
+           
         <tr>
             <td>
-                @Html.DisplayFor(modelItem => item.Nom_constructeur)
+                @Html.DisplayFor(modelItem => constructeur.Id)
             </td>
             <td>
-                <a asp-page="./Edit" asp-route-id="@item.Id">Edit</a> |
-                <a asp-page="./Details" asp-route-id="@item.Id">Details</a> |
-                <a asp-page="./Delete" asp-route-id="@item.Id">Delete</a>
+                @Html.DisplayFor(modelItem => constructeur.Nom_constructeur)
+            </td>
+            <td>
+                <ul>
+                    @foreach (var jeuxConsole in constructeur.List_console)
+                        {
+                           
+                    <li>
+                        @Html.DisplayFor(modelItem => jeuxConsole.Id):
+                        @Html.DisplayFor(modelItem => jeuxConsole.Nom_jeuxconsole) -
+                        @Html.DisplayFor(modelItem => jeuxConsole.Type_jeuxconsole)
+                        <ul>
+                            @foreach (var vente in jeuxConsole.List_ventes)
+                                    {
+                                       
+                            <li>
+                                Id: @vente.Id, Nombre Ventes: @vente.Nombre_ventes, Année: @vente.Annee
+                            </li>
+                                    }
+                        </ul>
+                    </li>
+                        }
+                </ul>
+            </td>
+            <td>
+                <a asp-page="./Edit" asp-route-id="@constructeur.Id">Edit</a> |
+                <a asp-page="./Details" asp-route-id="@constructeur.Id">Details</a> |
+                <a asp-page="./Delete" asp-route-id="@constructeur.Id">Delete</a>
             </td>
         </tr>
-}
+        }
     </tbody>
 </table>
+
+
+Répondre
+
+
+Transférer
+Volet des participants fermé

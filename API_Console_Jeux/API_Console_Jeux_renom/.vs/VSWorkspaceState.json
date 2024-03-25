@@ -2,8 +2,12 @@
   "ExpandedNodes": [
     "",
     "\\API_Console_Jeux",
-    "\\API_Console_Jeux\\Controllers"
+    "\\API_Console_Jeux\\Controllers",
+    "\\Client_BDTN",
+    "\\Client_BDTN\\Pages",
+    "\\Client_BDTN\\Pages\\Constructeurs",
+    "\\Client_BDTN\\Pages\\JeuxConsoles"
   ],
-  "SelectedNode": "\\API_Console_Jeux\\Controllers\\VentesController.cs",
+  "SelectedNode": "\\Client_BDTN\\Pages\\Constructeurs\\Index.cshtml",
   "PreviewInSolutionExplorer": false
 }
