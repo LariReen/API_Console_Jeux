@@ -1,11 +1,8 @@
-﻿using System;
-using System.Collections.Generic;
-using System.Linq;
-using System.Threading.Tasks;
+﻿using System.Collections.Generic;
 using Microsoft.AspNetCore.Mvc;
 using Microsoft.AspNetCore.Mvc.RazorPages;
-using Microsoft.AspNetCore.Mvc.Rendering;
 using Client_BDTN.API;
+
 namespace Client_BDTN.Pages.JeuxConsoles
 {
     public class CreateModel : PageModel
@@ -17,28 +14,37 @@ namespace Client_BDTN.Pages.JeuxConsoles
             _client = client;
         }
 
+        [BindProperty]
+        public JeuxConsole JeuxConsole { get; set; } = new JeuxConsole();
+
+        // Initialisez ici la liste des ventes pour le binding avec la vue.
+        [BindProperty]
+        public List<Ventes> Ventes { get; set; } = new List<Ventes>() { new Ventes() };
+
         public IActionResult OnGet()
         {
+            // Initialisation supplémentaire si nécessaire
             return Page();
         }
 
-        [BindProperty]
-        public JeuxConsole JeuxConsole { get; set; } = default!;
-
-        // To protect from overposting attacks, see https://aka.ms/RazorPagesCRUD
         public async Task<IActionResult> OnPostAsync()
         {
             if (!ModelState.IsValid)
             {
                 return Page();
             }
+
+            // Ajoutez les ventes au JeuxConsole avant de l'envoyer
+            JeuxConsole.List_ventes = Ventes;
+
             try
             {
                 await _client.JeuxConsolesPOSTAsync(JeuxConsole);
             }
             catch (Exception ex)
             {
-                return RedirectToPage("./Index");
+                ModelState.AddModelError("", $"Une erreur est survenue: {ex.Message}");
+                return Page();
             }
             return RedirectToPage("./Index");
         }

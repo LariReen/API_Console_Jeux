@@ -23,6 +23,13 @@
                 <input asp-for="JeuxConsole.Type_jeuxconsole" class="form-control" />
                 <span asp-validation-for="JeuxConsole.Type_jeuxconsole" class="text-danger"></span>
             </div>
+
+            <h4>Ventes Associées</h4>
+            <div id="ventesContainer">
+                <!-- Les champs de vente seront ajoutés ici par le script JavaScript -->
+            </div>
+            <button type="button" class="btn btn-secondary" onclick="addVenteField()">Ajouter Vente</button>
+
             <div class="form-group">
                 <input type="submit" value="Create" class="btn btn-primary" />
             </div>
@@ -31,9 +38,31 @@
 </div>
 
 <div>
-    <a asp-page="Index">Back to List</a>
+    <a asp-page="./Index">Back to List</a>
 </div>
 
 @section Scripts {
-    @{await Html.RenderPartialAsync("_ValidationScriptsPartial");}
+    @{
+        await Html.RenderPartialAsync("_ValidationScriptsPartial");
+    }
+
+    <script>
+        function addVenteField() {
+            const container = document.getElementById('ventesContainer');
+            const venteCount = container.querySelectorAll('.vente-group').length;
+            const html = `
+                        <div class="vente-group">
+                            <div class="form-group">
+                                <label for="JeuxConsole_List_ventes_${venteCount}__Nombre_ventes">Nombre de ventes</label>
+                                <input type="number" name="JeuxConsole.List_ventes[${venteCount}].Nombre_ventes" class="form-control" />
+                            </div>
+                            <div class="form-group">
+                                <label for="JeuxConsole_List_ventes_${venteCount}__Annee">Année</label>
+                                <input type="text" name="JeuxConsole.List_ventes[${venteCount}].Annee" class="form-control" />
+                            </div>
+                        </div>
+                    `;
+            container.innerHTML += html;
+        }
+    </script>
 }
